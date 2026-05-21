@@ -22,12 +22,7 @@ export function Footer() {
           Open WhatsApp →
         </a>
         <div className="mt-32 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
-          <span>© 2026 AAKAAR by Kumar. All rights reserved.</span>
-          <div className="flex gap-8">
-            <a href="#" className="hover:text-foreground">LinkedIn</a>
-            <a href="#" className="hover:text-foreground">Instagram</a>
-            <a href="#" className="hover:text-foreground">Dribbble</a>
-          </div>
+          <span>© 2026 AAKAAR. All rights reserved.</span>
         </div>
       </div>
     </footer>

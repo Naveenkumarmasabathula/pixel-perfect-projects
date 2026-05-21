@@ -16,7 +16,7 @@ export function Navigation() {
         <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="AAKAAR" className="h-9 w-9 object-contain" />
           <span className="font-display font-bold text-xl tracking-tighter">
-            AAKAAR<span className="text-accent">/</span>KUMAR
+            AAKAAR
           </span>
         </Link>
         <div className="hidden md:flex items-center gap-10 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">

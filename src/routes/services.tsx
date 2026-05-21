@@ -122,7 +122,7 @@ function ServicesPage() {
                 Starting at
               </div>
               <div className="font-display text-5xl md:text-7xl font-bold tracking-tighter mt-2">
-                ₹50,000
+                ₹5000 to ₹5,00,000+
               </div>
               <p className="mt-3 text-sm opacity-80 italic">
                 Every project is unique. Let's discuss what's right for you.

@@ -61,7 +61,7 @@ function Index() {
         <div className="flex flex-col gap-8">
           <div className="inline-flex items-center gap-2 font-mono text-accent text-sm">
             <span className="size-2 bg-accent rounded-full animate-pulse" />
-            AVAILABLE FOR Q3 2026
+            AVAILABLE FOR NEW PROJECTS
           </div>
           <h1 className="font-display text-6xl sm:text-7xl md:text-[140px] leading-[0.85] font-bold tracking-tighter uppercase">
             No templates.
@@ -93,14 +93,19 @@ function Index() {
         </div>
       </section>
 
-      {/* Case Studies */}
+      {/* Showcase */}
       <section className="px-6 max-w-7xl mx-auto mb-32 md:mb-40">
         <div className="flex justify-between items-baseline mb-12 border-b border-border pb-6">
           <h2 className="font-display text-3xl md:text-4xl uppercase font-bold italic">
-            Selected Work
+            Project Showcase
           </h2>
           <span className="font-mono text-xs text-muted-foreground">001 — 003</span>
         </div>
+
+        <p className="max-w-2xl mb-12 text-muted-foreground leading-relaxed">
+          Some projects I worked on. Each one was shaped to match the brand,
+          the audience, and the story behind the business.
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           {cases.map((c, i) => (
@@ -144,7 +149,7 @@ function Index() {
             to="/work"
             className="inline-block font-mono text-xs uppercase tracking-widest border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors"
           >
-            View all case studies →
+            View full showcase →
           </Link>
         </div>
       </section>

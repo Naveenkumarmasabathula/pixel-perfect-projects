@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { WHATSAPP_URL, EMAIL } from "@/lib/site";
+import { WHATSAPP_CALL_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -38,7 +38,7 @@ function ContactPage() {
       {/* WhatsApp primary */}
       <section className="px-6 max-w-7xl mx-auto pb-24">
         <a
-          href={WHATSAPP_URL}
+          href={WHATSAPP_CALL_URL}
           target="_blank"
           rel="noreferrer"
           className="block group border border-border hover:border-accent transition-all"
@@ -49,10 +49,10 @@ function ContactPage() {
                 Fastest / Recommended
               </span>
               <h2 className="font-display text-4xl md:text-7xl font-bold uppercase tracking-tighter mt-4 leading-none group-hover:text-accent transition-colors">
-                Chat on<br />WhatsApp
+                Book a<br />20-min call
               </h2>
               <p className="mt-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                +91 70134 83183 · Reply within 2 hours
+                Opens WhatsApp with a call request message.
               </p>
             </div>
             <div className="md:col-span-4 flex md:justify-end">
@@ -66,24 +66,9 @@ function ContactPage() {
 
       {/* Other methods */}
       <section className="px-6 max-w-7xl mx-auto pb-32">
-        <div className="grid md:grid-cols-2 gap-px bg-border">
+        <div className="grid gap-px bg-border">
           <a
-            href={`mailto:${EMAIL}`}
-            className="bg-background p-10 group hover:bg-surface transition-colors"
-          >
-            <span className="font-mono text-[10px] uppercase tracking-widest text-accent">
-              Email
-            </span>
-            <h3 className="font-display text-2xl md:text-3xl font-bold uppercase mt-4 group-hover:text-accent transition-colors break-all">
-              {EMAIL}
-            </h3>
-            <p className="mt-3 font-mono text-xs text-muted-foreground">
-              For detailed briefs and document attachments.
-            </p>
-          </a>
-
-          <a
-            href={WHATSAPP_URL}
+            href={WHATSAPP_CALL_URL}
             target="_blank"
             rel="noreferrer"
             className="bg-background p-10 group hover:bg-surface transition-colors"
@@ -92,10 +77,10 @@ function ContactPage() {
               Strategy Call
             </span>
             <h3 className="font-display text-2xl md:text-3xl font-bold uppercase mt-4 group-hover:text-accent transition-colors">
-              Book a 20-min call
+              Send the 20-min call request
             </h3>
             <p className="mt-3 font-mono text-xs text-muted-foreground">
-              Ping me on WhatsApp to lock a slot.
+              WhatsApp opens with the message prefilled.
             </p>
           </a>
         </div>
