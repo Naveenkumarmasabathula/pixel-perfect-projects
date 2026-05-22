@@ -8,12 +8,12 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "Custom website design, e-commerce optimization, redesigns, portfolios, design systems, and performance audits. Starting at ₹50,000.",
+          "Custom website design, AI services, e-commerce optimization, redesigns, portfolios, design systems, and performance audits. Starting at ₹50,000.",
       },
       { property: "og:title", content: "Services & Pricing — AAKAAR" },
       {
         property: "og:description",
-        content: "Investment, not expense. Starting at ₹50,000.",
+        content: "Investment, not expense. AI, web design, and optimization starting at ₹50,000.",
       },
     ],
   }),
@@ -35,24 +35,30 @@ const services = [
   },
   {
     n: "03",
+    name: "AI Workflow Automation & Integration",
+    desc: "Use AI where it actually helps: lead capture, content assistance, support flows, internal tools, and workflow automation.",
+    best: "Teams wanting practical AI adoption instead of hype. Operations that need to move faster.",
+  },
+  {
+    n: "04",
     name: "Website Redesign",
     desc: "Your old site isn't working. Let's rebuild it — keeping what works, fixing what doesn't.",
     best: "Established businesses with outdated websites. Sites with poor conversion.",
   },
   {
-    n: "04",
+    n: "05",
     name: "Portfolio & Case Study Sites",
     desc: "Showcase your best work with a site that tells the story. Perfect for agencies and creatives.",
     best: "Design/dev agencies, consultants, creative professionals.",
   },
   {
-    n: "05",
+    n: "06",
     name: "Brand-Aligned Design Systems",
     desc: "Cohesive design guidelines that work across all your digital touchpoints.",
     best: "Growing teams needing consistency. Agencies needing scalable templates.",
   },
   {
-    n: "06",
+    n: "07",
     name: "Performance & UX Audit",
     desc: "Your site exists but isn't performing. We identify problems and create a roadmap to fix them.",
     best: "Established websites with declining performance. High bounce rates.",
@@ -64,7 +70,7 @@ function ServicesPage() {
     <>
       <section className="px-6 max-w-7xl mx-auto pt-16 pb-24">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-          Services / 006 Offerings
+          Services / 007 Offerings
         </span>
         <h1 className="font-display text-5xl md:text-8xl font-bold uppercase tracking-tighter leading-[0.9] mt-6">
           What I create.
