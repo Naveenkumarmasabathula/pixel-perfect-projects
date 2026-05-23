@@ -124,6 +124,7 @@ const featuredProjects = [
     summary:
       "An editorial layout for marketing insights, built to make the content feel premium, readable, and easy to scan.",
     img: workedOn1,
+    url: "https://blog.scaleoxperts.com/",
   },
   {
     n: "02",
@@ -132,6 +133,7 @@ const featuredProjects = [
     summary:
       "A corporate landing page for a technical services brand, shaped around clarity, trust, and conversion.",
     img: workedOn2,
+    url: "https://miftechsolution.com/",
   },
   {
     n: "03",
@@ -140,6 +142,7 @@ const featuredProjects = [
     summary:
       "A high-contrast growth page designed to push attention toward a single conversion goal.",
     img: workedOn3,
+    url: "https://scaleoxperts.com/services/360-digital-marketing",
   },
   {
     n: "04",
@@ -148,6 +151,7 @@ const featuredProjects = [
     summary:
       "A tutor-focused homepage with a strong hero narrative, trust markers, and clear calls to action.",
     img: workedOn4,
+    url: "https://landing-studio-m582sfsxyh0o-vortexzens-projects.vercel.app/",
   },
   
   {
@@ -157,6 +161,7 @@ const featuredProjects = [
     summary:
       "A clean, story-led landing page that keeps attention on the offer and makes the next click feel inevitable.",
     img: workedOn5,
+    url: "https://scaleoxperts.com/",
   },
 ];
 
@@ -201,7 +206,14 @@ function WorkPage() {
                   key={project.title}
                   className="pl-6 basis-[92%] sm:basis-[78%] md:basis-[52%] lg:basis-[44%]"
                 >
-                  <div className="group h-full bg-background border border-border hover:bg-surface transition-colors">
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={project.title}
+                    className="block h-full"
+                  >
+                    <div className="group h-full bg-background border border-border hover:bg-surface transition-colors">
                     <div className="p-6 md:p-8">
                       <div className="flex items-baseline justify-between gap-6">
                         <span className="font-display text-3xl font-bold tracking-tighter text-accent">
@@ -238,7 +250,8 @@ function WorkPage() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                    </div>
+                  </a>
                 </CarouselItem>
               );
             })}

@@ -1,4 +1,7 @@
 import "./lib/error-capture";
+// Bundle sitemap and robots into the server build so the worker can serve them directly
+import sitemapXml from "../public/sitemap.xml?raw";
+import robotsTxt from "../public/robots.txt?raw";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
@@ -69,6 +72,24 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      // Serve sitemap and robots directly from bundled assets when requested
+      try {
+        const url = new URL(request.url);
+        if (url.pathname === "/sitemap.xml") {
+          return new Response(sitemapXml, {
+            status: 200,
+            headers: { "content-type": "application/xml" },
+          });
+        }
+        if (url.pathname === "/robots.txt") {
+          return new Response(robotsTxt, {
+            status: 200,
+            headers: { "content-type": "text/plain" },
+          });
+        }
+      } catch (err) {
+        // ignore URL parse errors and continue to SSR handler
+      }
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);

@@ -10,6 +10,7 @@ import {
 
 import appCss from "../styles.css?url";
 import logoUrl from "../assets/logo.png?url";
+const SITE_URL = process.env.SITE_URL || process.env.VITE_SITE_URL || "http://localhost:3000";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
@@ -71,9 +72,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Websites that don't just look beautiful—they perform.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: `${SITE_URL.replace(/\/$/, "")}${logoUrl}` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "canonical", href: SITE_URL.replace(/\/$/, "") + "/" },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: logoUrl, type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -95,6 +100,18 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "AAKAAR",
+              url: SITE_URL.replace(/\/$/, ""),
+              logo: SITE_URL.replace(/\/$/, "") + logoUrl,
+            }),
+          }}
+        />
       </head>
       <body>
         {children}
