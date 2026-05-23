@@ -1,10 +1,21 @@
 import "./lib/error-capture";
-// Bundle sitemap and robots into the server build so the worker can serve them directly
-import sitemapXml from "../public/sitemap.xml?raw";
-import robotsTxt from "../public/robots.txt?raw";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+
+const sitemapTemplate = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>__ORIGIN__</loc><lastmod>2026-05-23</lastmod></url>
+  <url><loc>__ORIGIN__/about</loc><lastmod>2026-05-23</lastmod></url>
+  <url><loc>__ORIGIN__/contact</loc><lastmod>2026-05-23</lastmod></url>
+  <url><loc>__ORIGIN__/services</loc><lastmod>2026-05-23</lastmod></url>
+  <url><loc>__ORIGIN__/work</loc><lastmod>2026-05-23</lastmod></url>
+</urlset>`;
+
+const robotsTemplate = `User-agent: *
+Allow: /
+Sitemap: __ORIGIN__/sitemap.xml
+`;
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -72,40 +83,23 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
-      // Serve sitemap and robots directly from bundled assets when requested
-      try {
-        const url = new URL(request.url);
-        if (url.pathname === "/sitemap.xml") {
-          // Use SITE_URL env if present, otherwise use request origin
-          const envSite = (process.env.SITE_URL || process.env.VITE_SITE_URL || "").replace(/\/$/, "");
-          const origin = envSite || url.origin;
-          // Replace each <loc> value to use the desired origin but keep the path
-          const transformed = sitemapXml.replace(/<loc>(https?:\/\/[^<]+)<\/loc>/g, (_, loc) => {
-            try {
-              const p = new URL(loc).pathname + new URL(loc).search + new URL(loc).hash;
-              return `<loc>${origin}${p}</loc>`;
-            } catch {
-              return `<loc>${origin}</loc>`;
-            }
-          });
+      const url = new URL(request.url);
+      const origin = `${url.protocol}//${url.host}`;
 
-          return new Response(transformed, {
-            status: 200,
-            headers: { "content-type": "application/xml" },
-          });
-        }
-        if (url.pathname === "/robots.txt") {
-          // Update robots to reference SITE_URL if provided
-          const envSite = (process.env.SITE_URL || process.env.VITE_SITE_URL || "").replace(/\/$/, "");
-          const robotsOut = envSite ? robotsTxt.replace(/Sitemap:\s*https?:\/\/[^\n]+/i, `Sitemap: ${envSite}/sitemap.xml`) : robotsTxt;
-          return new Response(robotsOut, {
-            status: 200,
-            headers: { "content-type": "text/plain" },
-          });
-        }
-      } catch (err) {
-        // ignore URL parse errors and continue to SSR handler
+      if (url.pathname === "/sitemap.xml") {
+        return new Response(sitemapTemplate.replace(/__ORIGIN__/g, origin), {
+          status: 200,
+          headers: { "content-type": "application/xml; charset=utf-8" },
+        });
       }
+
+      if (url.pathname === "/robots.txt") {
+        return new Response(robotsTemplate.replace(/__ORIGIN__/g, origin), {
+          status: 200,
+          headers: { "content-type": "text/plain; charset=utf-8" },
+        });
+      }
+
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);

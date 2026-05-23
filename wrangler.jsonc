@@ -3,5 +3,9 @@
   "name": "tanstack-start-app",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "SITE_URL": "https://aakaar.app/",
+    "VITE_SITE_URL": "https://aakaar.app/"
+  },
   "main": "src/server.ts",
 }

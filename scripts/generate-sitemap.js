@@ -1,10 +1,27 @@
 import fs from 'fs';
 import path from 'path';
 
-// Read SITE_URL from env or fallback
-const SITE_URL = process.env.SITE_URL || process.env.VITE_SITE_URL || 'http://localhost:3000';
+function readSiteUrl(workspaceRoot) {
+  const envSite = process.env.SITE_URL || process.env.VITE_SITE_URL;
+  if (envSite) return envSite;
+
+  try {
+    const wranglerPath = path.join(workspaceRoot, 'dist', 'server', 'wrangler.json');
+    if (fs.existsSync(wranglerPath)) {
+      const data = JSON.parse(fs.readFileSync(wranglerPath, 'utf8'));
+      const vars = data.vars || {};
+      if (vars.SITE_URL) return vars.SITE_URL;
+      if (vars.VITE_SITE_URL) return vars.VITE_SITE_URL;
+    }
+  } catch (error) {
+    console.warn('Could not read SITE_URL from dist/server/wrangler.json:', error.message);
+  }
+
+  return 'http://localhost:3000';
+}
 
 const workspaceRoot = path.resolve(process.cwd());
+const SITE_URL = readSiteUrl(workspaceRoot);
 const routeGenPath = path.join(workspaceRoot, 'src', 'routeTree.gen.ts');
 let routes = ['/'];
 
