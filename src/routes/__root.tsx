@@ -9,7 +9,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import logoUrl from "../assets/logo.png?url";
+import logoMark from "../assets/logo-mark.svg?url";
+import caseAgency from "../assets/case-agency.jpg?url";
 const SITE_URL = process.env.SITE_URL || process.env.VITE_SITE_URL || "http://localhost:3000";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -72,7 +73,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Websites that don't just look beautiful—they perform.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: `${SITE_URL.replace(/\/$/, "")}${logoUrl}` },
+      { property: "og:image", content: `${SITE_URL.replace(/\/$/, "")}${caseAgency}` },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -80,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "canonical", href: SITE_URL.replace(/\/$/, "") + "/" },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: logoUrl, type: "image/png" },
+      { rel: "icon", href: logoMark, type: "image/svg+xml" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -108,7 +109,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
               "@type": "Organization",
               name: "AAKAAR",
               url: SITE_URL.replace(/\/$/, ""),
-              logo: SITE_URL.replace(/\/$/, "") + logoUrl,
+              logo: SITE_URL.replace(/\/$/, "") + logoMark,
             }),
           }}
         />
