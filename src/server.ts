@@ -76,13 +76,29 @@ export default {
       try {
         const url = new URL(request.url);
         if (url.pathname === "/sitemap.xml") {
-          return new Response(sitemapXml, {
+          // Use SITE_URL env if present, otherwise use request origin
+          const envSite = (process.env.SITE_URL || process.env.VITE_SITE_URL || "").replace(/\/$/, "");
+          const origin = envSite || url.origin;
+          // Replace each <loc> value to use the desired origin but keep the path
+          const transformed = sitemapXml.replace(/<loc>(https?:\/\/[^<]+)<\/loc>/g, (_, loc) => {
+            try {
+              const p = new URL(loc).pathname + new URL(loc).search + new URL(loc).hash;
+              return `<loc>${origin}${p}</loc>`;
+            } catch {
+              return `<loc>${origin}</loc>`;
+            }
+          });
+
+          return new Response(transformed, {
             status: 200,
             headers: { "content-type": "application/xml" },
           });
         }
         if (url.pathname === "/robots.txt") {
-          return new Response(robotsTxt, {
+          // Update robots to reference SITE_URL if provided
+          const envSite = (process.env.SITE_URL || process.env.VITE_SITE_URL || "").replace(/\/$/, "");
+          const robotsOut = envSite ? robotsTxt.replace(/Sitemap:\s*https?:\/\/[^\n]+/i, `Sitemap: ${envSite}/sitemap.xml`) : robotsTxt;
+          return new Response(robotsOut, {
             status: 200,
             headers: { "content-type": "text/plain" },
           });
