@@ -37,16 +37,16 @@
 }
 
 :root {
-  /* Stark Noir Editorial palette */
-  --background: oklch(0.13 0 0);          /* #0A0A0A */
-  --foreground: oklch(0.96 0 0);          /* #F5F5F5 */
-  --surface: oklch(0.18 0 0);             /* #141414 */
-  --accent: oklch(0.68 0.22 38);          /* #FF4D00 */
-  --accent-foreground: oklch(1 0 0);
-  --muted: oklch(0.22 0 0);
-  --muted-foreground: oklch(0.6 0 0);     /* #808080 */
-  --border: oklch(1 0 0 / 10%);
-  --radius: 0;
+  /* Premium / Apple White palette */
+  --background: #FFFFFF;                  /* main page background */
+  --foreground: #0B0B0C;                  /* primary text (near-black) */
+  --surface: #F7F7F8;                     /* cards, panels */
+  --accent: #007AFF;                      /* iOS-style blue accent */
+  --accent-foreground: #FFFFFF;           /* text on accent */
+  --muted: #F0F1F4;                       /* subtle surfaces */
+  --muted-foreground: #6B7280;            /* subdued text */
+  --border: rgba(11,11,12,0.08);          /* faint borders */
+  --radius: 12px;                         /* rounded corners for premium feel */
 }
 
 @layer base {

@@ -23,6 +23,9 @@ export function Footer() {
         </a>
         <div className="mt-32 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
           <span>© 2026 AAKAAR. All rights reserved.</span>
+          <a href="mailto:aakaarbuilds@gmail.com" className="hover:text-accent">
+            aakaarbuilds@gmail.com
+          </a>
         </div>
       </div>
     </footer>

@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Menu } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/site";
-import logoMark from "@/assets/logo-mark.svg";
+import logo from "@/assets/logo.svg";
 import {
   Sheet,
   SheetClose,
@@ -23,7 +23,7 @@ export function Navigation() {
     <nav className="fixed top-0 w-full z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logoMark} alt="AAKAAR" className="h-9 w-9 object-contain" decoding="async" />
+          <img src={logo} alt="AAKAAR" className="h-9 w-9 object-contain" decoding="async" />
           <span className="font-display font-bold text-xl tracking-tighter">
             AAKAAR
           </span>

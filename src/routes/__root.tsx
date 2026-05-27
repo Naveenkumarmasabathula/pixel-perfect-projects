@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import logoMark from "../assets/logo-mark.svg?url";
+import logo from "../assets/logo.svg?url";
 import caseAgency from "../assets/case-agency.jpg?url";
 const SITE_URL = process.env.SITE_URL || process.env.VITE_SITE_URL || "http://localhost:3000";
 import { Navigation } from "@/components/Navigation";
@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "canonical", href: SITE_URL.replace(/\/$/, "") + "/" },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: logoMark, type: "image/svg+xml" },
+      { rel: "icon", href: logo, type: "image/svg+xml" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -109,7 +109,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
               "@type": "Organization",
               name: "AAKAAR",
               url: SITE_URL.replace(/\/$/, ""),
-              logo: SITE_URL.replace(/\/$/, "") + logoMark,
+              logo: SITE_URL.replace(/\/$/, "") + logo,
             }),
           }}
         />

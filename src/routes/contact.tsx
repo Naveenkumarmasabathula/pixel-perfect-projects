@@ -83,6 +83,20 @@ function ContactPage() {
               WhatsApp opens with the message prefilled.
             </p>
           </a>
+          <a
+            href="mailto:aakaarbuilds@gmail.com"
+            className="bg-background p-10 group hover:bg-surface transition-colors"
+          >
+            <span className="font-mono text-[10px] uppercase tracking-widest text-accent">
+              Email
+            </span>
+            <h3 className="font-display text-2xl md:text-3xl font-bold uppercase mt-4 group-hover:text-accent transition-colors">
+              aakaarbuilds@gmail.com
+            </h3>
+            <p className="mt-3 font-mono text-xs text-muted-foreground">
+              Send a detailed brief or message directly via email.
+            </p>
+          </a>
         </div>
       </section>
 
